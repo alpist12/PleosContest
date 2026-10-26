@@ -1,0 +1,3 @@
+<resources>
+    <style name="Theme.PleosContest" parent="android:Theme.Material.NoActionBar" />
+</resources>

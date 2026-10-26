@@ -1,0 +1,3 @@
+# gradlew는 셸 스크립트라 CRLF로 바뀌면 리눅스/CI에서 안 돈다
+gradlew text eol=lf
+*.bat text eol=crlf
