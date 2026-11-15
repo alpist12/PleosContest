@@ -1,0 +1,25 @@
+{
+  "packageName": "ai.pleos.contest",
+  "appDescription": "A family trip app for planning packing lists and manually confirming preparation, vehicle loading and recovery.",
+  "invokeWord": "챙김",
+  "version": "1.3",
+  "actionCalls": [{
+    "type": "function",
+    "function": {
+      "name": "GET_PACKING_RECOMMENDATIONS",
+      "description": "Show packing candidates calculated from the trip activity, duration and party composition for user review without changing the current packing list.",
+      "component": "activity",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "activity": {"type": "string", "enum": ["캠핑", "나들이", "운동", "출근"], "description": "The planned trip activity."},
+          "nights": {"type": "number", "description": "The number of overnight stays, an integer from zero to fourteen."},
+          "adults": {"type": "number", "description": "The number of adults, an integer from one to twelve."},
+          "children": {"type": "number", "description": "The number of children excluding infants, an integer from zero to twelve."},
+          "infants": {"type": "number", "description": "The number of infants, an integer from zero to six. The total party size must not exceed twenty."}
+        },
+        "required": ["activity", "nights", "adults", "children", "infants"]
+      }
+    }
+  }]
+}

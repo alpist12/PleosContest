@@ -7,19 +7,31 @@ plugins {
 android {
     namespace = "ai.pleos.contest"
     compileSdk = 36
+    useLibrary("android.car", false)
 
     defaultConfig {
         applicationId = "ai.pleos.contest"
         minSdk = 28
         // Pleos Connect Emulator v2.1.0 = API 34
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = 4
+        versionName = "1.3"
+        testInstrumentationRunner = "ai.pleos.contest.SyncAlarmInstrumentation"
+    }
+
+    signingConfigs {
+        create("submission") {
+            storeFile = System.getenv("CHAEGIM_STORE_FILE")?.takeIf { it.isNotBlank() }?.let { file(it) }
+            storePassword = System.getenv("CHAEGIM_STORE_PASSWORD")
+            keyAlias = System.getenv("CHAEGIM_KEY_ALIAS")
+            keyPassword = System.getenv("CHAEGIM_KEY_PASSWORD")
+        }
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("submission")
         }
     }
 
@@ -41,6 +53,9 @@ dependencies {
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.material3:material3")
     debugImplementation("androidx.compose.ui:ui-tooling")
+
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.json:json:20240303")
 
     // Pleos Connect Vehicle SDK (가이드의 2.3.1은 저장소에 없음 → 실제 최신 2.3.2)
     implementation("ai.pleos.playground:Vehicle:2.3.2")

@@ -3,3 +3,18 @@
 .idea/
 build/
 local.properties
+sync-server/private/
+submission/private/
+
+# Local tooling, caches, previews and submission outputs
+[.]*/
+**/__pycache__/
+/design/
+/submission/
+/sync-server/deployment.json
+**/private/
+.env*
+*.log
+*.hprof
+*.jks
+*.keystore
